@@ -453,21 +453,52 @@ button:focus-visible {
       return article;
     }
 
-    function createSpread(title, cards, positions) {
-      const section = document.createElement("section");
-      section.className = "spread-block";
-      const heading = document.createElement("h2");
-      heading.textContent = title;
-      const summary = document.createElement("p");
-      summary.className = "spread-summary";
-      summary.textContent = cards
-        .map((card, index) => `${positions[index].name}「${card.name}」：${card.meaning}`)
-        .join(" ");
-      const grid = document.createElement("div");
-      grid.className = "cards";
-      cards.forEach((card, index) => grid.appendChild(createCardElement(card, positions[index])));
-      section.append(heading, summary, grid);
-      return section;
+    function buildNarrative(cards) {
+  if (cards.length === 3) {
+    const [start, development, outcome] = cards;
+
+    return `這個情境的起點帶有「${start.name}」的意味：${start.meaning} ` +
+      `接下來，「${development.name}」提示事情可能會經歷這樣的發展：${development.meaning} ` +
+      `若沿著這個方向前進，「${outcome.name}」呈現的可能趨勢是：${outcome.meaning} ` +
+      `可以留意的是，${outcome.advice}`;
+  }
+
+  if (cards.length === 5) {
+    const [background, present, challenge, guidance, outcome] = cards;
+
+    return `這件事的背景由「${background.name}」帶出：${background.meaning} ` +
+      `回到目前，「${present.name}」反映的核心狀態是：${present.meaning} ` +
+      `過程中可能需要面對「${challenge.name}」所提示的課題：${challenge.meaning} ` +
+      `「${guidance.name}」提供的思考方向是：${guidance.advice} ` +
+      `若沿著目前的方向前進，「${outcome.name}」呈現的可能趨勢是：${outcome.meaning}`;
+  }
+
+  return cards
+    .map((card, index) => `${card.name}：${card.meaning}`)
+    .join(" ");
+}
+
+function createSpread(title, cards, positions) {
+  const section = document.createElement("section");
+  section.className = "spread-block";
+
+  const heading = document.createElement("h2");
+  heading.textContent = title;
+
+  const storyLabel = document.createElement("p");
+  storyLabel.className = "spread-summary";
+  storyLabel.textContent = buildNarrative(cards);
+
+  const grid = document.createElement("div");
+  grid.className = "cards";
+
+  cards.forEach((card, index) => {
+    grid.appendChild(createCardElement(card, positions[index]));
+  });
+
+  section.append(heading, storyLabel, grid);
+  return section;
+}
     }
 
     modeSelect.addEventListener("change", () => {
