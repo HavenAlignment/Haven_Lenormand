@@ -388,15 +388,15 @@ button:focus-visible {
       { number: 25, name: "戒指", symbol: "💍", meaning: "承諾、契約、合作與循環往復的關係。", advice: "確認彼此對承諾的理解一致，留意合作條件。" },
       { number: 26, name: "書", symbol: "📖", meaning: "知識、學習、秘密與尚未揭露的資訊。", advice: "繼續蒐集資料，目前可能還有資訊未明。" },
       { number: 27, name: "信", symbol: "✉️", meaning: "訊息、文件、通知與書面往來。", advice: "檢查訊息與文件細節，重要事項留下紀錄。" },
-      { number: 28, name: "男士", symbol: "👤", meaning: "重要的男性人物，或問題中具有陽性能量的一方。", advice: "留意這位人物的立場，也可依牌組慣例代指問卜者。" },
-      { number: 29, name: "女士", symbol: "👤", meaning: "重要的女性人物，或問題中具有陰性能量的一方。", advice: "留意這位人物的立場，也可依牌組慣例代指問卜者。" },
+      { number: 28, name: "男士", symbol: "👤", meaning: "重要的男性人物，或問題中具有陽性能量的一方。", advice: "留意這位人物的立場，也可依牌組慣例代入不同角色。" },
+      { number: 29, name: "女士", symbol: "👤", meaning: "重要的女性人物，或問題中具有陰性能量的一方。", advice: "留意這位人物的立場，也可依牌組慣例代入不同角色。" },
       { number: 30, name: "百合", symbol: "🌸", meaning: "成熟、平和、經驗、家庭和諧或親密關係。", advice: "用成熟與耐心處理事情，讓溝通回到平靜。" },
       { number: 31, name: "太陽", symbol: "☀️", meaning: "活力、成功、清晰、信心與正向成果。", advice: "看見已有的優勢，保持行動力並分享成果。" },
       { number: 32, name: "月亮", symbol: "🌙", meaning: "情緒、直覺、想像力、聲譽與被認可的需求。", advice: "重視感受與創意，也分辨直覺和一時情緒。" },
       { number: 33, name: "鑰匙", symbol: "🗝️", meaning: "關鍵、解答、重要發現與開啟機會。", advice: "留意能讓問題突破的關鍵資訊或行動。" },
       { number: 34, name: "魚", symbol: "🐟", meaning: "金錢、資源、流動、交易與自主性。", advice: "檢視資源如何流動，特別留意財務與交易細節。" },
       { number: 35, name: "錨", symbol: "⚓", meaning: "穩定、持久、工作、安全感與堅持。", advice: "穩定累積有助長期成果，也留意是否過度停滯。" },
-      { number: 36, name: "十字架", symbol: "✝️", meaning: "責任、考驗、沉重課題與需要承擔的事情。", advice: "正視壓力，分辨哪些責任值得承擔、哪些需要求助。" }
+      { number: 36, name: "十字架", symbol: "✝️", meaning: "責任、考驗、沉重課題與需要承擔的事情。", advice: "正視壓力，分辨哪些責任值得承擔、哪些需要放下。" }
     ];
 
     const comparePositions = [
@@ -436,70 +436,77 @@ button:focus-visible {
     function createCardElement(card, position) {
       const article = document.createElement("article");
       article.className = "card";
+
       const positionLabel = document.createElement("div");
       positionLabel.className = "position";
       positionLabel.textContent = `${position.name}｜${position.prompt}`;
+
       const symbol = document.createElement("div");
       symbol.className = "card-symbol";
       symbol.setAttribute("aria-hidden", "true");
       symbol.textContent = card.symbol;
+
       const heading = document.createElement("h3");
       heading.textContent = `${String(card.number).padStart(2, "0")}．${card.name}`;
+
       const meaning = document.createElement("p");
       meaning.textContent = card.meaning;
+
       const advice = document.createElement("p");
       advice.textContent = `提醒：${card.advice}`;
+
       article.append(positionLabel, symbol, heading, meaning, advice);
       return article;
     }
 
     function buildNarrative(cards) {
-  if (cards.length === 3) {
-    const [start, development, outcome] = cards;
+      if (cards.length === 3) {
+        const [start, development, outcome] = cards;
 
-    return `這個情境的起點帶有「${start.name}」的意味：${start.meaning} ` +
-      `接下來，「${development.name}」提示事情可能會經歷這樣的發展：${development.meaning} ` +
-      `若沿著這個方向前進，「${outcome.name}」呈現的可能趨勢是：${outcome.meaning} ` +
-      `可以留意的是，${outcome.advice}`;
-  }
+        return `這個情境的起點帶有「${start.name}」的意味：${start.meaning} ` +
+          `接下來，「${development.name}」提示事情可能會經歷這樣的發展：${development.meaning} ` +
+          `若沿著這個方向前進，「${outcome.name}」呈現的可能趨勢是：${outcome.meaning} ` +
+          `可以留意的是，${outcome.advice}`;
+      }
 
-  if (cards.length === 5) {
-    const [background, present, challenge, guidance, outcome] = cards;
+      if (cards.length === 5) {
+        const [background, present, challenge, guidance, outcome] = cards;
 
-    return `這件事的背景由「${background.name}」帶出：${background.meaning} ` +
-      `回到目前，「${present.name}」反映的核心狀態是：${present.meaning} ` +
-      `過程中可能需要面對「${challenge.name}」所提示的課題：${challenge.meaning} ` +
-      `「${guidance.name}」提供的思考方向是：${guidance.advice} ` +
-      `若沿著目前的方向前進，「${outcome.name}」呈現的可能趨勢是：${outcome.meaning}`;
-  }
+        return `這件事的背景由「${background.name}」帶出：${background.meaning} ` +
+          `回到目前，「${present.name}」反映的核心狀態是：${present.meaning} ` +
+          `過程中可能需要面對「${challenge.name}」所提示的課題：${challenge.meaning} ` +
+          `「${guidance.name}」提供的思考方向是：${guidance.advice} ` +
+          `若沿著目前的方向前進，「${outcome.name}」呈現的可能趨勢是：${outcome.meaning}`;
+      }
 
-  return cards
-    .map((card, index) => `${card.name}：${card.meaning}`)
-    .join(" ");
-}
-
-function createSpread(title, cards, positions) {
-  const section = document.createElement("section");
-  section.className = "spread-block";
-
-  const heading = document.createElement("h2");
-  heading.textContent = title;
-
-  const storyLabel = document.createElement("p");
-  storyLabel.className = "spread-summary";
-  storyLabel.textContent = buildNarrative(cards);
-
-  const grid = document.createElement("div");
-  grid.className = "cards";
-
-  cards.forEach((card, index) => {
-    grid.appendChild(createCardElement(card, positions[index]));
-  });
-
-  section.append(heading, storyLabel, grid);
-  return section;
-}
+      return cards
+        .map((card) => `${card.name}：${card.meaning}`)
+        .join(" ");
     }
+
+    function createSpread(title, cards, positions) {
+      const section = document.createElement("section");
+      section.className = "spread-block";
+
+      const heading = document.createElement("h2");
+      heading.textContent = title;
+
+      const storyLabel = document.createElement("p");
+      storyLabel.className = "spread-summary";
+      storyLabel.textContent = buildNarrative(cards);
+
+      const grid = document.createElement("div");
+      grid.className = "cards";
+
+      cards.forEach((card, index) => {
+        grid.appendChild(createCardElement(card, positions[index]));
+      });
+
+      section.append(heading, storyLabel, grid);
+      return section;
+    }
+
+    optionsContainer.hidden = modeSelect.value !== "compare";
 
     modeSelect.addEventListener("change", () => {
       optionsContainer.hidden = modeSelect.value !== "compare";
