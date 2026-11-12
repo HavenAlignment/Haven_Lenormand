@@ -13,15 +13,12 @@
       --panel-light: #edf0e7;
       --text: #35443c;
       --muted: #718076;
-      --accent: #a88654;
       --sage: #829481;
       --border: rgba(91, 112, 93, 0.2);
       --shadow: 0 16px 42px rgba(67, 82, 67, 0.1);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       min-height: 100vh;
@@ -40,8 +37,7 @@
       margin: 0 auto;
     }
 
-    .profile,
-    .panel {
+    .profile, .panel {
       border: 1px solid var(--border);
       border-radius: 24px;
       background: var(--panel);
@@ -105,8 +101,7 @@
       letter-spacing: 0.08em;
     }
 
-    .intro p,
-    .note {
+    .intro p, .note {
       color: var(--muted);
       line-height: 1.8;
     }
@@ -121,17 +116,10 @@
       font-weight: 650;
     }
 
-    .question-label {
-      margin-bottom: 8px;
-    }
+    .question-label { margin-bottom: 8px; }
+    .mode-label { margin-top: 20px; margin-bottom: 8px; }
 
-    .mode-label {
-      margin-top: 20px;
-      margin-bottom: 8px;
-    }
-
-    input,
-    select {
+    input, select {
       width: 100%;
       min-height: 48px;
       padding: 11px 14px;
@@ -143,12 +131,9 @@
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    input::placeholder {
-      color: #a2aaa0;
-    }
+    input::placeholder { color: #a2aaa0; }
 
-    input:focus,
-    select:focus {
+    input:focus, select:focus {
       border-color: var(--sage);
       box-shadow: 0 0 0 3px rgba(130, 148, 129, 0.16);
       outline: none;
@@ -161,9 +146,7 @@
       margin-top: 18px;
     }
 
-    .option-inputs[hidden] {
-      display: none;
-    }
+    .option-inputs[hidden] { display: none; }
 
     .option-inputs label {
       display: grid;
@@ -278,44 +261,17 @@
     }
 
     @media (max-width: 700px) {
-      body {
-        padding: 20px 12px;
-      }
-
-      .profile {
-        gap: 15px;
-        padding: 18px;
-      }
-
-      .profile-avatar {
-        width: 86px;
-        height: 86px;
-        flex-basis: 86px;
-      }
-
-      .profile-info h1 {
-        font-size: 1.45rem;
-      }
-
-      .panel {
-        padding: 18px;
-      }
-
-      .option-inputs,
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      .position {
-        min-height: 0;
-      }
+      body { padding: 20px 12px; }
+      .profile { gap: 15px; padding: 18px; }
+      .profile-avatar { width: 86px; height: 86px; flex-basis: 86px; }
+      .profile-info h1 { font-size: 1.45rem; }
+      .panel { padding: 18px; }
+      .option-inputs, .cards { grid-template-columns: 1fr; }
+      .position { min-height: 0; }
     }
 
     @media (max-width: 380px) {
-      .profile {
-        align-items: flex-start;
-        flex-direction: column;
-      }
+      .profile { align-items: flex-start; flex-direction: column; }
     }
   </style>
 </head>
@@ -388,8 +344,8 @@
       { number: 25, name: "戒指", symbol: "💍", meaning: "承諾、契約、合作與循環往復的關係。", advice: "確認彼此對承諾的理解一致，留意合作條件。" },
       { number: 26, name: "書", symbol: "📖", meaning: "知識、學習、秘密與尚未揭露的資訊。", advice: "繼續蒐集資料，目前可能還有資訊未明。" },
       { number: 27, name: "信", symbol: "✉️", meaning: "訊息、文件、通知與書面往來。", advice: "檢查訊息與文件細節，重要事項留下紀錄。" },
-      { number: 28, name: "男士", symbol: "👤", meaning: "重要的男性人物，或問題中具有陽性能量的一方。", advice: "留意這位人物的立場，也可依牌組慣例代入行動風格。" },
-      { number: 29, name: "女士", symbol: "👤", meaning: "重要的女性人物，或問題中具有陰性能量的一方。", advice: "留意這位人物的立場，也可依牌組慣例代入感受與直覺。" },
+      { number: 28, name: "男士", symbol: "👤", meaning: "重要的男性人物，或問題中具有陽性能量的一方。", advice: "留意這位人物的立場，也可依牌組慣例代入不同角色。" },
+      { number: 29, name: "女士", symbol: "👤", meaning: "重要的女性人物，或問題中具有陰性能量的一方。", advice: "留意這位人物的立場，也可依牌組慣例代入不同角色。" },
       { number: 30, name: "百合", symbol: "🌸", meaning: "成熟、平和、經驗、家庭和諧或親密關係。", advice: "用成熟與耐心處理事情，讓溝通回到平靜。" },
       { number: 31, name: "太陽", symbol: "☀️", meaning: "活力、成功、清晰、信心與正向成果。", advice: "看見已有的優勢，保持行動力並分享成果。" },
       { number: 32, name: "月亮", symbol: "🌙", meaning: "情緒、直覺、想像力、聲譽與被認可的需求。", advice: "重視感受與創意，也分辨直覺和一時情緒。" },
@@ -404,6 +360,7 @@
       { name: "發展", prompt: "選擇後可能經歷的過程" },
       { name: "可能趨勢", prompt: "沿著此方向前進的可能發展" }
     ];
+
     const fiveCardPositions = [
       { name: "背景", prompt: "影響目前情況的背景" },
       { name: "現況", prompt: "目前的核心狀態" },
@@ -461,27 +418,23 @@
 
     function buildNarrative(cards) {
       if (cards.length === 3) {
-        const [start, development, outcome] = cards;
-
-        return `這個情境的起點帶有「${start.name}」的意味：${start.meaning} ` +
-          `接下來，「${development.name}」提示事情可能會經歷這樣的發展：${development.meaning} ` +
-          `若沿著這個方向前進，「${outcome.name}」呈現的可能趨勢是：${outcome.meaning} ` +
-          `可以留意的是，${outcome.advice}`;
+        const [start, develop, outcome] = cards;
+        return [
+          `這個情境像一段正在展開的旅程：起初，「${start.name}」帶來${start.meaning}`,
+          `接著，「${develop.name}」讓事情進入新的發展，提醒你${develop.advice}`,
+          `最後，「${outcome.name}」呈現可能的走向——${outcome.meaning}`,
+          `整體來看，這不是注定的結果，而是邀請你${outcome.advice.toLowerCase()}。`
+        ].join(" ");
       }
 
-      if (cards.length === 5) {
-        const [background, present, challenge, guidance, outcome] = cards;
-
-        return `這件事的背景由「${background.name}」帶出：${background.meaning} ` +
-          `回到目前，「${present.name}」反映的核心狀態是：${present.meaning} ` +
-          `過程中可能需要面對「${challenge.name}」所提示的課題：${challenge.meaning} ` +
-          `「${guidance.name}」提供的思考方向是：${guidance.advice} ` +
-          `若沿著目前的方向前進，「${outcome.name}」呈現的可能趨勢是：${outcome.meaning}`;
-      }
-
-      return cards
-        .map((card) => `${card.name}：${card.meaning}`)
-        .join(" ");
+      const [background, present, challenge, guidance, outcome] = cards;
+      return [
+        `這件事的背景先由「${background.name}」帶出：${background.meaning}`,
+        `回到現在，「${present.name}」描繪出你正在經歷的核心狀態：${present.meaning}`,
+        `往前走時，「${challenge.name}」可能帶來需要面對的轉折：${challenge.meaning}`,
+        `此時「${guidance.name}」像一盞提醒方向的燈，建議你${guidance.advice.toLowerCase()}`,
+        `若沿著目前方向前進，「${outcome.name}」呈現的可能趨勢是${outcome.meaning}`
+      ].join(" ");
     }
 
     function createSpread(title, cards, positions) {
@@ -517,6 +470,7 @@
       questionResult.textContent = question
         ? `你的問題：「${question}」以下牌面提供思考參考。`
         : "你沒有輸入問題；以下牌面可作為一般性的自我探索參考。";
+
       resultsContainer.replaceChildren();
 
       if (modeSelect.value === "compare") {
